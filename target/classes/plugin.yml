@@ -1,0 +1,10 @@
+name: FantasycraftLWCmodules
+main: com.fantasycraft.lwcmodules.FantasyCraftPlugin
+version: 1.0
+commands:
+    trust:
+        permission: fantasycraftLWC.trust
+    untrust:
+        permission: fantasycraftLWC.trust
+    trustlist:
+        permission: fantasycraftLWC.trust
