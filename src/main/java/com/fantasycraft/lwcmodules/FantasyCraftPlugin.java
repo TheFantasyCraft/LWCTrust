@@ -109,24 +109,32 @@ public class FantasyCraftPlugin extends JavaPlugin {
             return true;
         }
 
-
-        if (args.length == 1) {
-            String User = args[0].toLowerCase();
-            if (command.getName().equalsIgnoreCase("trust")) {
+        if (command.getName().equalsIgnoreCase("trust")) {
+            if (args.length == 1) {
+                String User = args[0].toLowerCase();
                 addTrustedPlayerFor(playername, User);
                 sender.sendMessage(ChatColor.GREEN + "Friend " + args[0] + " added!");
                 if (getServer().getPlayer(User) != null)
                     getServer().getPlayer(User).sendMessage(ChatColor.GREEN + playername + " Trusted you for LWC protections");
-                return true;
+            }else{
+                sender.sendMessage(ChatColor.RED + "Usage: /trust <friend>");
             }
-            if (command.getName().equalsIgnoreCase("untrust")) {
-                rmTrustedPlayerFor(playername,User);
+            return true;
+        }
+
+        if (command.getName().equalsIgnoreCase("untrust")) {
+            if (args.length == 1) {
+                String User = args[0].toLowerCase();
+                rmTrustedPlayerFor(playername, User);
                 sender.sendMessage(ChatColor.RED + "Friend " + args[0] + " removed!");
                 if (getServer().getPlayer(User) != null)
                     getServer().getPlayer(User).sendMessage(ChatColor.RED + playername + " don't Trust you anymore for LWC protections");
-                return true;
+            }else{
+                sender.sendMessage(ChatColor.RED + "Usage: /untrust <notafriendanymore>");
             }
+            return true;
         }
+
 
         return true;
     }
