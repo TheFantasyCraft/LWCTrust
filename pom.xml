@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.fantasycraft</groupId>
-    <artifactId>lwcmodules</artifactId>
+    <artifactId>LWCTrust</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <repositories>
