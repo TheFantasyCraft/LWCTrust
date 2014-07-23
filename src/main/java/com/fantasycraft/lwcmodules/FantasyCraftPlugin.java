@@ -12,9 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by thomas on 7/20/2014.
@@ -25,7 +23,7 @@ public class FantasyCraftPlugin extends JavaPlugin {
     @Getter
     private List<String> DisabledPlayers = new ArrayList<String>();
 
-    private Map<String,List<String>> TrustedPlayers = new HashMap<String, List<String>>();
+    private StringMap<StringList> TrustedPlayers = new StringMap<StringList>();
 
     @Getter
     private LWCPlugin lwcPlugin;
@@ -47,7 +45,7 @@ public class FantasyCraftPlugin extends JavaPlugin {
     public List<String> getTrustedPlayersFor(String Playername){
 
         if (TrustedPlayers.get(Playername) == null)
-            TrustedPlayers.put( Playername , new ArrayList<String>());
+            TrustedPlayers.put( Playername , new StringList());
         return TrustedPlayers.get(Playername);
     }
 
@@ -63,7 +61,7 @@ public class FantasyCraftPlugin extends JavaPlugin {
     }
 
     public boolean rmTrustedPlayerFor(String playername, String nofriendanymore /*Lol*/){
-        if (!getTrustedPlayersFor(playername).contains(nofriendanymore.toLowerCase()))
+        if (!getTrustedPlayersFor(playername).contains(nofriendanymore))
             return false;
         else
         {
@@ -87,12 +85,12 @@ public class FantasyCraftPlugin extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-         String playername = sender.getName().toLowerCase();
+         String playername = sender.getName();
 
         if (command.getName().equalsIgnoreCase("trustlist"))
         {
             if (args.length == 1)
-                playername = args[0].toLowerCase();
+                playername = args[0];
 
             String Friends = ChatColor.GREEN + "Current friends: ";
             for (String friend : getTrustedPlayersFor(playername))
@@ -111,7 +109,7 @@ public class FantasyCraftPlugin extends JavaPlugin {
 
         if (command.getName().equalsIgnoreCase("trust")) {
             if (args.length == 1) {
-                String User = args[0].toLowerCase();
+                String User = args[0];
                 addTrustedPlayerFor(playername, User);
                 sender.sendMessage(ChatColor.GREEN + "Friend " + args[0] + " added!");
                 if (getServer().getPlayer(User) != null)
@@ -124,7 +122,7 @@ public class FantasyCraftPlugin extends JavaPlugin {
 
         if (command.getName().equalsIgnoreCase("untrust")) {
             if (args.length == 1) {
-                String User = args[0].toLowerCase();
+                String User = args[0];
                 rmTrustedPlayerFor(playername, User);
                 sender.sendMessage(ChatColor.RED + "Friend " + args[0] + " removed!");
                 if (getServer().getPlayer(User) != null)
@@ -171,8 +169,8 @@ public class FantasyCraftPlugin extends JavaPlugin {
             ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
 
 
-            DisabledPlayers = (List<String>) stream.readObject();
-            TrustedPlayers = (Map<String, List<String>>) stream.readObject();
+            DisabledPlayers = ( List<String> ) stream.readObject();
+            TrustedPlayers = ( StringMap<StringList> ) stream.readObject();
         }
         catch (Exception e){
             getLogger().severe("Load failed! " + e.getMessage());

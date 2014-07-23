@@ -32,9 +32,11 @@ public class TrustUntrustModule extends JavaModule {
 
         if (plugin.getTrustedPlayersFor(Owner).contains(Player)) {
             event.getProtection().remove();
+            event.setCancelled(false);
             if (!Boolean.parseBoolean(plugin.getLwcPlugin().getLWC().resolveProtectionConfiguration(event.getProtection().getBlock().getType(), "quiet"))) {
               event.getPlayer().sendMessage(ChatColor.RED + "Removed block from trused player: " +  Owner );
             }
+
         }
     }
 }
