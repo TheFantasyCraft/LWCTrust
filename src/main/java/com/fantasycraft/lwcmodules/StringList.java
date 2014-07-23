@@ -1,7 +1,6 @@
 package com.fantasycraft.lwcmodules;
 
 import java.util.ArrayList;
-
 /**
  * Created by thomas on 7/22/2014.
  */
@@ -15,3 +14,4 @@ public class StringList extends ArrayList<String> {
         return false;
     }
 }
+

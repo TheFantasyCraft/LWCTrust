@@ -2,9 +2,7 @@ package com.fantasycraft.lwcmodules;
 
 import java.util.HashMap;
 
-/**
- * Created by thomas on 7/22/2014.
- */
+
 public class StringMap<k> extends HashMap<String,k> {
     @Override
     public k put(String key, k value) {
