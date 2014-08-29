@@ -11,7 +11,7 @@
     <repositories>
         <repository>
             <id>GlobalRep</id>
-            <url>http://repo.sacredlabyrinth.net:8081/artifactory/repo/</url>
+            <url>http://repo.sacredlabyrinth.net/artifactory/repo/</url>
         </repository>
 
         <repository>
